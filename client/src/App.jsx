@@ -16,17 +16,19 @@ export const App = () => {
 		})();
 	}, []);
 
-	if (!data) return <>No data.</>;
 
 	return (
 		<div className="App">
 			<h1>"Swamiji's Spiritual Pearls"</h1>
 			<div>
 				{
-					data.map(d => <div key={d._id}>
-						<h3>{d.question}</h3>
-						<p>{d.answer}</p>
-					</div>)
+					!data ?
+						<>No data.</>
+						:
+						data.map(d => <div key={d._id}>
+							<h3>{d.question}</h3>
+							<p>{d.answer}</p>
+						</div>)
 				}
 			</div>
 		</div>
