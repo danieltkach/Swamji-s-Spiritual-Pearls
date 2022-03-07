@@ -1,45 +1,34 @@
-import { useState } from 'react'
-import logo from './logo.svg'
-import './App.css'
+import './App.css';
+import { useState, useEffect } from 'react';
+import axios from 'axios';
 
-function App() {
-  const [count, setCount] = useState(0)
+export const App = () => {
+	const [data, setData] = useState();
 
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>Hello Vite + React!</p>
-        <p>
-          <button type="button" onClick={() => setCount((count) => count + 1)}>
-            count is: {count}
-          </button>
-        </p>
-        <p>
-          Edit <code>App.jsx</code> and save to test HMR updates.
-        </p>
-        <p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-          {' | '}
-          <a
-            className="App-link"
-            href="https://vitejs.dev/guide/features.html"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Vite Docs
-          </a>
-        </p>
-      </header>
-    </div>
-  )
-}
+	useEffect(() => {
+		(async () => {
+			try {
+				const response = await axios.get('http://localhost:8080/all');
+				setData(response.data);
+			} catch (error) {
+				console.error(error.message);
+			}
+		})();
+	}, []);
 
-export default App
+	if (!data) return <>No data.</>;
+
+	return (
+		<div className="App">
+			<h1>"Swamiji's Spiritual Pearls"</h1>
+			<div>
+				{
+					data.map(d => <div key={d._id}>
+						<h3>{d.question}</h3>
+						<p>{d.answer}</p>
+					</div>)
+				}
+			</div>
+		</div>
+	);
+};

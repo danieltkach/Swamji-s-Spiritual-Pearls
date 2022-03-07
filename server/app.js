@@ -6,6 +6,11 @@ const AutoLoad = require('fastify-autoload');
 module.exports = async function (fastify, opts) {
 	fastify.register(require('./db-connector'));
 
+	fastify.register(require('fastify-cors'), {
+		origin: "*",
+    methods: ["GET"]
+	});
+
 	fastify.register(AutoLoad, {
 		dir: path.join(__dirname, 'plugins'),
 		options: Object.assign({}, opts)
