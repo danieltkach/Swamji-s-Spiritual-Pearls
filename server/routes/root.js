@@ -15,30 +15,40 @@ async function routes(fastify, options) {
 		return result;
 	});
 
-	fastify.get('/question-answer/:id', async (request, reply) => {
-		const result = await collection.findOne({ _id: ObjectId(request.params.id)});
+	fastify.get('/teaching/:id', async (request, reply) => {
+		const result = await collection.findOne({ _id: ObjectId(request.params.id) });
 		if (!result) {
 			throw new Error('Invalid value.');
 		}
 		return result;
 	});
 
-	const questionAnswerSchema = {
+	const teachingSchema = {
 		type: 'object',
-		required: ['answer'],
 		properties: {
-			answer: { type: 'string' },
-		},
+			teaching: { type: 'string' },
+			questions: {
+				type: 'array',
+				items: {
+					type: 'object',
+					properties: {
+						question: { type: 'string' },
+						answer: { type: 'string' }
+					}
+				}
+			},
+			required: ['teaching']
+		}
 	};
 
 	const schema = {
-		body: questionAnswerSchema,
+		body: teachingSchema,
 	};
 
-	fastify.post('/question-answer', { schema }, async (request, reply) => {
+	fastify.post('/new-teaching', { schema }, async (request, reply) => {
 		const result = await collection.insertOne({
-			question: request.body.question, 
-			answer: request.body.answer
+			teaching: request.body.teaching,
+			questions: request.body.questions
 		});
 		return result;
 	});
