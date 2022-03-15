@@ -25,6 +25,7 @@ async function routes(fastify, options) {
 
 	const teachingSchema = {
 		type: 'object',
+		required: ['teaching'],
 		properties: {
 			teaching: { type: 'string' },
 			questions: {
