@@ -26,7 +26,7 @@ export const App = () => {
 						<>No data.</>
 						:
 						data.map(d => <div key={d._id}>
-							<h3>{d.teaching}</h3>
+							<p>{d.teaching}</p>
 							{/* <p>{d.questions[0].question}</p>
 							<p>{d.questions[0].answer}</p> */}
 						</div>)

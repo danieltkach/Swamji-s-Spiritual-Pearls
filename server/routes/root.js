@@ -1,7 +1,7 @@
 let ObjectId = require('mongodb').ObjectId;
 
 async function routes(fastify, options) {
-	const collection = fastify.mongo.db.collection('questions-answers');
+	const collection = fastify.mongo.db.collection('teachings');
 
 	fastify.get('/', async (request, reply) => {
 		return { mantra: 'ॐ नमः शिवाय' };
