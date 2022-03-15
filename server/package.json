@@ -8,7 +8,7 @@
   },
   "scripts": {
     "test": "tap \"test/**/*.test.js\"",
-    "start": "fastify start -l info app.js",
+    "start": "fastify start -p process.env.PORT -l info app.js",
     "dev": "fastify start -p 8080 -w -l info -P app.js"
   },
   "keywords": [],
