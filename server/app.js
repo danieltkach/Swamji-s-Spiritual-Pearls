@@ -10,6 +10,11 @@ module.exports = async function (fastify, opts) {
 		origin: "*",
     methods: ["GET"]
 	});
+	
+	fastify.register(require('fastify-cors'), {
+		origin: "https://swamijis-spiritual-pearls.herokuapp.com/",
+    methods: ["GET, POST"]
+	});
 
 	fastify.register(AutoLoad, {
 		dir: path.join(__dirname, 'plugins'),
