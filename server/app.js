@@ -7,11 +7,6 @@ module.exports = async function (fastify, opts) {
 	fastify.register(require('./db-connector'));
 
 	fastify.register(require('fastify-cors'), {
-		origin: "*",
-    methods: ["GET"]
-	});
-	
-	fastify.register(require('fastify-cors'), {
 		origin: "https://swamijis-spiritual-pearls.herokuapp.com/",
     methods: ["GET, POST"]
 	});
