@@ -37,7 +37,6 @@ async function routes(fastify, options) {
 					}
 				}
 			},
-			required: ['teaching']
 		}
 	};
 
