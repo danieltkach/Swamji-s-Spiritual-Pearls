@@ -48,6 +48,7 @@ async function routes(fastify, options) {
 
 	fastify.post('/new-teaching', { schema }, async (request, reply) => {
 		const result = await collection.insertOne({
+			question: request.body.question,
 			teaching: request.body.teaching,
 			questions: request.body.questions
 		});
