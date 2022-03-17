@@ -27,6 +27,7 @@ async function routes(fastify, options) {
 		type: 'object',
 		required: ['teaching'],
 		properties: {
+			question: { type: 'string' },
 			teaching: { type: 'string' },
 			questions: {
 				type: 'array',
